@@ -1,38 +1,29 @@
-const { text } = require('express')
 const express = require('express')
 const app = express()
-//criamos um middleware
-//npm faker
-app.use(express.json())// possibilita o uso do req.body
+app.use(express.json)
 
-app.use((req,res,next)=>{
-    console.log("oi")
-    next()
-})
-
-////////////////
 
 const lembretes = {}
-var contador = 0
-
-
-//exemplo.com/lembretes
+contador = 0
 //GET
-
-app.get('/lembretes', (req,res) => {
+//exemplo.com.br/lembretes
+app.get('/lembretes', (req, res) => {
     res.send(lembretes)
 })
-
+ 
 //POST
-
-app.post('/lembretes', (req,res) => {
+//exemplo.com.br/lembretes
+app.post('/lembretes', (req, res) => {
     contador++
-    //{texto: "fazer cafe"}
+    //{texto: "Fazer café"}
     const { texto } = req.body
-    lembretes[contador] = {contador,texto}
+    lembretes[contador] = {contador, texto}
     res.status(201).send(lembretes[contador])
 })
 
-app.listen(4000, ()=> {
-    console.log('Lembretes, Porta 4000')
+
+
+app.listen(4000, () => {
+    console.log("Lembretes. Porta 4000.")
 })
+
