@@ -22,12 +22,11 @@ app.post('/lembretes/:id/observacoes', (req, res) => {
     observacoesPorLembreteId[req.params.id] = observacoesDoLembre
 
     res.status(201).send(observacoesDoLembre)
-    
 })
 
 //GET
 app.get('/lembretes/:id/observacoes', (req, res) => {
-
+    res.status(302).send(observacoesPorLembreteId[req.params.id] || [])
 })
 
 app.listen(5000, () => {
